@@ -86,3 +86,23 @@ configure_swapfile() {
 }
 
 configure_swapfile
+
+##################################
+# Custom added                   #
+##################################
+
+# Create a opt folder in the home folder
+    for user in $(get_user_list); do
+	echo "INFO: changing default shell of user '$user' to zsh"
+	mkdir -p  ~/opt
+    done
+
+# Git clone the kali arsenal script and execute it
+    for user in $(get_user_list); do
+	echo "INFO: changing default shell of user '$user' to zsh"
+	cd ~/opt 
+	git clone https://github.com/kib3rvo1n/ansible-playbook-kali.git
+	cd ansible-playbook-kali
+	chmod +x deploy.sh
+	./deploy.sh
+    done
